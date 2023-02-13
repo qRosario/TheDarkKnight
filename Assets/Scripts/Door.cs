@@ -3,6 +3,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [SerializeField] private GameObject _audioHolder;
+    [SerializeField] private GameObject _hint;
     private bool _isOpened;
     private bool _isTrigger;
     private Animator _animator;
@@ -26,6 +27,7 @@ public class Door : MonoBehaviour
         if (player.CompareTag("Player"))
         {
             _isTrigger = true;
+            _hint.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider player)
@@ -33,6 +35,7 @@ public class Door : MonoBehaviour
         if (player.CompareTag("Player"))
         {
             _isTrigger = false;
+            _hint.SetActive(false);
         }
     }
 

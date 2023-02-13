@@ -2,53 +2,55 @@ using UnityEngine;
 
 public class Brige : MonoBehaviour
 {
+    [SerializeField] private GameObject _bridge;
     [SerializeField] private GameObject _grip;
-    [SerializeField] private GameObject _brige;
     [SerializeField] private GameObject _hint;
-    [SerializeField] private GameObject _light;
-    private Animator _gripAnimator;
+    [SerializeField] private GameObject _lignht;
     private Animator _bridgeAnimator;
-    private bool _inTrigger;
+    private Animator _gripAnimator;
+    private bool _isTrigger;
 
     private void Start()
     {
+        _bridgeAnimator = _bridge.GetComponent<Animator>();
         _gripAnimator = _grip.GetComponent<Animator>();
-        _bridgeAnimator = _brige.GetComponent<Animator>();
     }
 
     private void Update()
     {
-        BridgeUse();
+        BridgeUp();
     }
 
-    private void OnTriggerEnter(Collider arm)
+    private void OnTriggerEnter(Collider player)
     {
-        if (arm.gameObject.name == "Arm")
+        if (player.CompareTag("Player"))
         {
-            _inTrigger = true;
+            _isTrigger = true;
             _hint.SetActive(true);
         }
     }
-
-    private void OnTriggerExit(Collider arm)
+    private void OnTriggerExit(Collider player)
     {
-        if (arm.gameObject.name == "Arm")
+        if (player.CompareTag("Player"))
         {
-            _inTrigger = false;
+            _isTrigger = false;
             _hint.SetActive(false);
         }
     }
 
-    private void BridgeUse()
+    private void BridgeUp()
     {
-        if (_inTrigger == true)
+        if (_isTrigger == true)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
                 _gripAnimator.SetTrigger("GripUse");
                 _bridgeAnimator.SetTrigger("BrigdeUp");
-                _light.gameObject.SetActive(true);
+                _lignht.SetActive(true);
             }
         }
+
+
+
     }
 }
