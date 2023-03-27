@@ -54,7 +54,7 @@ public class AudioManager : MonoBehaviour
 
     public void SoundOf()
     {
-        if(_soundOn == true)
+        if (_soundOn == true)
         {
             _clickSound.Stop();
             AudioListener.pause = false;

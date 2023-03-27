@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _JumpForce = 1.0f;
     private Animator _animator;
     private Rigidbody _player;
-    
+
 
     private void Start()
     {

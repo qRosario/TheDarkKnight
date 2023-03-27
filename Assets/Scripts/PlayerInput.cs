@@ -25,7 +25,7 @@ public class PlayerInput : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _playerMovement.Movement(_moveDir,_movement);
+        _playerMovement.Movement(_moveDir, _movement);
         _playerMovement.Jump(_jump);
     }
 
@@ -53,6 +53,4 @@ public class PlayerInput : MonoBehaviour
             _jump = false;
         }
     }
-
-
 }
