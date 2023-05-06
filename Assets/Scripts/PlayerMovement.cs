@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed = 10.0f;
     [SerializeField] private float _JumpForce = 1.0f;
+    [SerializeField] private new ParticleSystem particleSystem;
     private Animator _animator;
     private Rigidbody _player;
 
@@ -47,6 +48,17 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             _animator.SetBool("IsAir", true);
+        }
+    }
+
+    private void OnTriggerEnter(Collider DieTrigger)
+    {
+        if (DieTrigger.CompareTag("DieTrigger"))
+        {
+            particleSystem.Play();
+            _animator.SetTrigger("Death");
+            _player.constraints = RigidbodyConstraints.FreezePosition;
+
         }
     }
 }
